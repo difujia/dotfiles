@@ -7,6 +7,22 @@ GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
 
 # Sublime Text Integration
-ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
+defaults write com.apple.LaunchServices LSHandlers -array-add '{LSHandlerContentType=public.plain-text;LSHandlerRoleAll=com.sublimetext.3;}'
+ln -sf "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
 export EDITOR='subl -w'
 git config --global core.editor "subl -n -w"
+
+# Shortcut for creating .gitignore files for specific projects
+function gitignore() {
+	if [[ $# -eq 1 ]]; then
+		fileName="${1}.gitignore"
+		cp ~/$fileName ./.gitignore
+	else
+		availableFiles=""
+		for file in ~/*.gitignore; do
+			fileName=`basename $file`
+			availableFiles+=${fileName/.gitignore/|}
+		done
+		echo "Usage: gitignore ${availableFiles%?}"
+	fi
+} 
