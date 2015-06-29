@@ -16,7 +16,7 @@ git config --global core.editor "subl -n -w"
 function gitignore() {
 	if [[ $# -eq 1 ]]; then
 		fileName="${1}.gitignore"
-		cp ~/$fileName ./.gitignore
+		cp -i ~/$fileName ./.gitignore
 	else
 		availableFiles=""
 		for file in ~/*.gitignore; do
