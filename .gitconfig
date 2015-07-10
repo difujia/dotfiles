@@ -129,6 +129,13 @@
 	# Detect copies as well as renames
 	renames = copies
 
+	# Use diffmerge as the visual diff tool
+	tool = diffmerge
+
+[difftool "diffmerge"]
+
+	cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
+
 [help]
 
 	# Automatically correct and execute mistyped commands
@@ -138,6 +145,16 @@
 
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
+
+	# Use diffmerge as the visual merge tool
+	tool = diffmerge
+
+
+[mergetool "diffmerge"]
+
+	cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
+
+	trustExitCode = true
 
 [push]
 
