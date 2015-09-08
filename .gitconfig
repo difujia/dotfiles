@@ -1,5 +1,8 @@
 [alias]
 
+	# Merge current branch into another local branch
+	merge-to = "!f() { git push $(git rev-parse --show-toplevel) head:$1; }; f"
+
 	# View all alias
 	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
 
