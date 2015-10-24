@@ -1,0 +1,32 @@
+# Custom path
+export GOPATH=~/go
+export JAVA_HOME=$(/usr/libexec/java_home)
+
+# PATH=$PATH:/usr/local/go/bin
+PATH=$PATH:~/git/depot_tools
+PATH=$PATH:/usr/local/sbin
+
+function bindCmdPath() {
+	local pythonCmd=`which $1`
+	if [ -f "$pythonCmd" ]; then
+		pushd . > /dev/null
+		cd `dirname $pythonCmd`
+		local target=$1
+		while [ -L "$target" ]
+		do
+			target=`readlink $target`
+			cd `dirname $target`
+			target=`basename $target`
+		done
+		local realpath=`pwd -P`
+		popd > /dev/null
+		if [[ :$PATH: != *:$realpath:* ]]; then
+			PATH=$PATH:$realpath
+			echo "Added $realpath to the path env"
+		fi
+	fi
+}
+bindCmdPath python3
+
+unset bindCmdPath
+export PATH
