@@ -1,7 +1,13 @@
 [alias]
 
-	# View abbreviated SHA, description, and history graph of the latest 20 commits
-	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+    # Merge current branch into another local branch
+    merge-to = "!f() { git push $(git rev-parse --show-toplevel) head:$1; }; f"
+
+    # View all alias
+    alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+
+    # View abbreviated SHA, description, and history graph of the latest 10 commits
+    l = log -10 --graph --format='%C(auto)%h %C(cyan)[%an]%C(auto)%d %C(reset)%s'
 
 	# View the current working tree status using the short format
 	s = status -s
