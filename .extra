@@ -31,3 +31,11 @@ function upgradeXcode() {
 	UUID=`defaults read /Applications/Xcode.app/Contents/Info DVTPlugInCompatibilityUUID`
 	find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add $UUID
 }
+
+function gemUninstall() {
+    if [[ $# -eq 1 ]]; then
+        gem list --local --no-version | grep ${1} | xargs gem uninstall
+    else
+        echo "Usage: gemUninstall {Gem Name}"
+    fi
+}
