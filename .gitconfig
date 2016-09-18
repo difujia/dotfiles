@@ -1,13 +1,7 @@
 [alias]
 
-	# Merge current branch into another local branch
-	merge-to = "!f() { git push $(git rev-parse --show-toplevel) head:$1; }; f"
-
-	# View all alias
-	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
-
-	# View abbreviated SHA, description, and history graph of the latest 10 commits
-	l = log -10 --graph --format='%C(auto)%h %C(cyan)[%an]%C(auto)%d %C(reset)%s'
+	# View abbreviated SHA, description, and history graph of the latest 20 commits
+	l = log --pretty=oneline -n 20 --graph --abbrev-commit
 
 	# View the current working tree status using the short format
 	s = status -s
@@ -139,6 +133,11 @@
 
 	cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
 
+[diff "bin"]
+
+	# Use `hexdump` to diff binary files
+	textconv = hexdump -v -C
+
 [help]
 
 	# Automatically correct and execute mistyped commands
@@ -148,16 +147,6 @@
 
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
-
-	# Use diffmerge as the visual merge tool
-	tool = diffmerge
-
-
-[mergetool "diffmerge"]
-
-	cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
-
-	trustExitCode = true
 
 [push]
 
