@@ -154,6 +154,16 @@
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
 
+    # Use diffmerge as the visual merge tool
+    tool = diffmerge
+
+
+[mergetool "diffmerge"]
+
+    cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
+
+    trustExitCode = true
+
 [push]
 
 	# Use the Git 1.x.x default to avoid errors on machines with old Git
