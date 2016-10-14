@@ -7,6 +7,7 @@ PATH=$GEM_HOME/bin:$PATH
 
 PATH=$PATH:/usr/local/go/bin
 PATH=$PATH:~/git/depot_tools
+PATH=$PATH:~/Library/PackageManager/bin
 export PATH=$PATH:/usr/local/sbin
 
 function bindCmdPath() {
