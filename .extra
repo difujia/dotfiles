@@ -1,5 +1,5 @@
 # Git credentials
-GIT_AUTHOR_NAME="Frank"
+GIT_AUTHOR_NAME="Frank Di"
 GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
 git config --global user.name "$GIT_AUTHOR_NAME"
 GIT_AUTHOR_EMAIL="difujia@gmail.com"
