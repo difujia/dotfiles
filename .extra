@@ -12,21 +12,6 @@ ln -sf "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/su
 export EDITOR='subl -w'
 git config --global core.editor "subl -n -w"
 
-# Shortcut for creating .gitignore files for specific projects
-function gitignore() {
-	if [[ $# -eq 1 ]]; then
-		fileName="${1}.gitignore"
-		cp -i ~/$fileName ./.gitignore
-	else
-		availableFiles=""
-		for file in ~/*.gitignore; do
-			fileName=`basename $file`
-			availableFiles+=${fileName/.gitignore/|}
-		done
-		echo "Usage: gitignore ${availableFiles%?}"
-	fi
-}
-
 function upgradeXcode() {
 	UUID=`defaults read /Applications/Xcode.app/Contents/Info DVTPlugInCompatibilityUUID`
 	find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add $UUID
