@@ -10,6 +10,7 @@ PATH=$HOME/.fastlane/bin:$PATH
 PATH=$PATH:/usr/local/go/bin
 PATH=$PATH:~/git/depot_tools
 PATH=$PATH:~/Library/PackageManager/bin
-export PATH=$PATH:/usr/local/sbin
+PATH=$PATH:/usr/local/sbin
+PATH=$PATH:~/flutter/bin
 
 export PATH
