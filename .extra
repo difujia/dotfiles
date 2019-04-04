@@ -18,15 +18,3 @@ function gemUninstall() {
 # Flutter mirrors
 FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 PUB_HOSTED_URL=https://pub.flutter-io.cn
-
-# Homebrew autocompletion setup
-if type brew &>/dev/null; then
-  for COMPLETION in $(brew --prefix)/etc/bash_completion.d/*
-  do
-    [[ -f $COMPLETION ]] && source "$COMPLETION"
-  done
-  if [[ -f $(brew --prefix)/etc/profile.d/bash_completion.sh ]];
-  then
-    source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
-  fi
-fi
